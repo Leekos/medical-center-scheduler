@@ -22,6 +22,7 @@ function App() {
       });
     } else {
       console.log("Dane się nie zgadzają");
+      setError("Adres email bądź hasło są nieprawidłowe");
     }
   };
   const Logout = () => {

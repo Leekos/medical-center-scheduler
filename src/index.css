@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import "material-dark.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -25,18 +27,18 @@ input {
   font-family: inherit;
 }
 
-.App {
+/* .App {
   height: 100vh;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   background-color: #53565a;
-}
-form {
+} */
+/*form {
   display: block;
   position: relative;
-}
-form::after {
+}*/
+/*form::after {
   content: "";
   display: block;
   position: absolute;
@@ -46,7 +48,7 @@ form::after {
   bottom: -5px;
   z-index: 1;
   background-image: linear-gradient(to bottom right, #ffce00, #f14579);
-}
+}*/
 
 form .form-inner {
   position: relative;

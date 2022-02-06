@@ -1,10 +1,19 @@
 import { ScheduleComponent } from "@syncfusion/ej2-react-schedule";
 import React, { useState } from "react";
-import Button from "./components/Button";
 import LoginForm from "./components/LoginForm";
 import Schedule from "./components/Schedule";
-import { ThemeProvider, createTheme, Grid } from "@mui/material";
+import {
+  ThemeProvider,
+  createTheme,
+  Grid,
+  Button,
+  Typography,
+  AppBar,
+  CssBaseline,
+  Toolbar,
+} from "@mui/material";
 import { Box, palette } from "@mui/system";
+import LogoutIcon from "@mui/icons-material/Logout";
 const themeOptions = createTheme({
   palette: {
     mode: "dark",
@@ -20,6 +29,9 @@ const themeOptions = createTheme({
     warning: {
       main: "#f50057",
     },
+  },
+  typography: {
+    fontFamily: "Poppins",
   },
 });
 
@@ -52,21 +64,35 @@ function App() {
   };
   return (
     <ThemeProvider theme={themeOptions}>
-      <Box className="App" sx={{ bgcolor: "text.disabled" }}>
-        {user.email != "" ? (
-          <div className="welcome">
-            <h2>
-              Welcome,<span>{user.name}</span>
-            </h2>
-            <div className="scheduleHolder">
-              <Schedule />
-            </div>
-            <Button color="red" text="Log out" onClick={Logout} />
-          </div>
-        ) : (
-          <LoginForm Login={Login} error={error} />
-        )}
-      </Box>
+      {user.email != "" ? (
+        <>
+          <CssBaseline />
+          <AppBar position="static">
+            <Toolbar>
+              <Typography sx={{ flexGrow: 1 }}>Welcome, {user.name}</Typography>
+              <Button startIcon={<LogoutIcon />} color="error" onClick={Logout}>
+                Logout
+              </Button>
+            </Toolbar>
+          </AppBar>
+          <Schedule />
+
+          {/* Welcome,<span>{user.name}</span> */}
+        </>
+      ) : (
+        // <Button
+        //   startIcon={<Logout />}
+        //   size="medium"
+        //   variant="contained"
+        //   color="error"
+        //   variant="contained"
+        //   onClick={Logout}
+        // >
+        //   Log Out
+        // </Button>
+
+        <LoginForm Login={Login} error={error} />
+      )}
     </ThemeProvider>
   );
 }

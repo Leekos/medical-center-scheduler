@@ -9,8 +9,9 @@ import {
   FormHelperText,
   ThemeProvider,
   createTheme,
+  CssBaseline,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
+
 import LoginIcon from "@mui/icons-material/Login";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -29,6 +30,9 @@ const themeOptions = createTheme({
     warning: {
       main: "#f50057",
     },
+  },
+  typography: {
+    fontFamily: "Poppins",
   },
 });
 
@@ -54,6 +58,7 @@ function LoginForm({ Login, error }) {
   const avatarStyle = { backgroundColor: "red" };
   return (
     <ThemeProvider theme={themeOptions}>
+      <CssBaseline />
       <Grid>
         <Paper elevation={10} style={paperStyle}>
           <form onSubmit={submitHandler}>

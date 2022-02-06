@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Grid } from "@mui/material";
 import {
   Inject,
   ScheduleComponent,
@@ -51,24 +51,30 @@ const resourceDataSource = [
 ];
 function Schedule() {
   return (
-    <ScheduleComponent
-      currentView="TimelineViews"
-      selectedDate={new Date(2019, 4, 8)}
-      eventSettings={{ dataSource: localData }}
-    >
-      <ResourcesDirective>
-        <ResourceDirective
-          field="ResourceID"
-          title="Lekarz"
-          name="Resources"
-          textField="Name"
-          idField="Id"
-          colorField="Color"
-          dataSource={resourceDataSource}
-        ></ResourceDirective>
-      </ResourcesDirective>
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews]} />
-    </ScheduleComponent>
+    <Grid container direction="row">
+      <Grid item>
+        <ScheduleComponent
+          currentView="TimelineViews"
+          selectedDate={new Date(2019, 4, 8)}
+          eventSettings={{ dataSource: localData }}
+        >
+          <ResourcesDirective>
+            <ResourceDirective
+              field="ResourceID"
+              title="Lekarz"
+              name="Resources"
+              textField="Name"
+              idField="Id"
+              colorField="Color"
+              dataSource={resourceDataSource}
+            ></ResourceDirective>
+          </ResourcesDirective>
+          <Inject
+            services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews]}
+          />
+        </ScheduleComponent>
+      </Grid>
+    </Grid>
   );
 }
 

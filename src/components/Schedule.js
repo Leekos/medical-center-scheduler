@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Inject,
   ScheduleComponent,
@@ -15,11 +16,11 @@ import {
 
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 
-// const remoteData = new DataManager({
-//   url: "localhost:8000/db.json",
-//   adaptor: new WebApiAdaptor(),
-//   crossDomain: true,
-// });
+const remoteData = new DataManager({
+  url: "localhost:3000/db.json",
+  adaptor: new WebApiAdaptor(),
+  crossDomain: true,
+});
 const localData = [
   {
     Id: 1,

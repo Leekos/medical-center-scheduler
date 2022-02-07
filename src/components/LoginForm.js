@@ -103,27 +103,6 @@ function LoginForm({ Login, error }) {
               </Grid>
               <Grid item>
                 <TextField
-                  label="Password"
-                  template="Enter password"
-                  fullWidth
-                  type="password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={(e) =>
-                    setDetails({ ...details, password: e.target.value })
-                  }
-                  value={details.password}
-                  id="password"
-                  name="password"
-                />
-              </Grid>
-              <Grid item>
-                <TextField
                   label="E-mail"
                   template="Enter e-mail"
                   type="e-mail"
@@ -141,6 +120,27 @@ function LoginForm({ Login, error }) {
                   value={details.email}
                   id="email"
                   name="email"
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  label="Password"
+                  template="Enter password"
+                  fullWidth
+                  type="password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LockIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  onChange={(e) =>
+                    setDetails({ ...details, password: e.target.value })
+                  }
+                  value={details.password}
+                  id="password"
+                  name="password"
                 />
               </Grid>
 

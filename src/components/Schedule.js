@@ -12,6 +12,7 @@ import {
   EventSettingsModel,
   ResourceDirective,
   ResourcesDirective,
+  DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
 
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
@@ -44,19 +45,63 @@ const localData = [
     ResourceID: 3,
   },
 ];
-const resourceDataSource = [
-  { Name: "Dr Janinia", Id: 1, Color: "#ea7a57" },
-  { Name: "Dr Max", Id: 2, Color: "#357CD2" },
-  { Name: "Dr Oskar", Id: 3, Color: "#7fa900" },
+
+const resourceData = [
+  { Name: "Dr Janinia", Id: 1, Color: "#ea7a57", designation: "Cardiologist" },
+  { Name: "Dr Max", Id: 2, Color: "#357CD2", designation: "Neurologist" },
+  {
+    Name: "Dr Oskar",
+    Id: 3,
+    Color: "#7fa900",
+    designation: "Orthopedic Surgeon",
+  },
 ];
+// const getDoctorName=(value)=>
+// {
+//   return value.resourceDataSource
+//   ?value.resourceDataSource[value.resource]
+// }; działamy auuu
+const groupData = {
+  resources: ["Resources"],
+};
+const getDoctorName = (value) => {
+  return value.resourceData
+    ? value.resourceData[value.resource.textField]
+    : value.resourceName;
+};
+const getDoctorLevel = (value) => {
+  let resourceName = getDoctorName(value);
+  return resourceName === "Dr Janinia"
+    ? "Cardiologist"
+    : resourceName === "Dr Max"
+    ? "Neurologist"
+    : "Orthopedic Surgeon";
+};
+const resourceHeaderTemplate = (props) => {
+  return (
+    <div className="template-wrap">
+      <div className="resource-detail">
+        <div className="resource-name">{getDoctorName(props)}</div>
+        <div className="resource-designation">{getDoctorLevel(props)}</div>
+      </div>
+    </div>
+  );
+};
+
 function Schedule() {
   return (
     <Grid container direction="row">
       <Grid item>
         <ScheduleComponent
+          resourceHeaderTemplate={resourceHeaderTemplate}
           currentView="TimelineViews"
           selectedDate={new Date(2019, 4, 8)}
           eventSettings={{ dataSource: localData }}
+          Views
+          group={groupData}
+          showWeekend={false}
+          startHour="10:00"
+          endHour="19:00"
         >
           <ResourcesDirective>
             <ResourceDirective
@@ -66,11 +111,19 @@ function Schedule() {
               textField="Name"
               idField="Id"
               colorField="Color"
-              dataSource={resourceDataSource}
+              dataSource={resourceData}
             ></ResourceDirective>
           </ResourcesDirective>
           <Inject
-            services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews]}
+            services={[
+              Day,
+              Week,
+              WorkWeek,
+              Month,
+              Agenda,
+              TimelineViews,
+              DragAndDrop,
+            ]}
           />
         </ScheduleComponent>
       </Grid>

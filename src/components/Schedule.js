@@ -1,5 +1,4 @@
-import React from "react";
-import * as data from "./db.json";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import {
   Inject,
@@ -15,37 +14,7 @@ import {
   ResourcesDirective,
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-
-import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
-
-const remoteData = new DataManager({
-  url: "http://localhost:3000/LoadData",
-  adaptor: new WebApiAdaptor(),
-  crossDomain: true,
-});
-const localData = [
-  {
-    Id: 1,
-    Subject: "Anna Kowalska",
-    StartTime: new Date(2019, 4, 8, 6, 0),
-    EndTime: new Date(2019, 4, 8, 7, 0),
-    ResourceID: 1,
-  },
-  {
-    Id: 2,
-    Subject: "Marek Kowalski",
-    StartTime: new Date(2019, 4, 9, 7, 30),
-    EndTime: new Date(2019, 4, 9, 8, 30),
-    ResourceID: 2,
-  },
-  {
-    Id: 3,
-    Subject: "Anna Nowak",
-    StartTime: new Date(2019, 4, 10, 9, 0),
-    EndTime: new Date(2019, 4, 10, 10, 0),
-    ResourceID: 3,
-  },
-];
+import axios from "axios";
 
 const resourceData = [
   { Name: "Dr Janinia", Id: 1, Color: "#ea7a57", designation: "Cardiologist" },
@@ -84,19 +53,39 @@ const resourceHeaderTemplate = (props) => {
     </div>
   );
 };
-
 function Schedule() {
+  const [appointments, setAppointments] = useState({});
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/appointments").then((res) => {
+      setAppointments(res.data);
+    });
+  }, []);
+
+  const onDragStop = ({ data }) => {
+    axios.put(`http://localhost:5000/appointments/${data.Id}`, data);
+  };
+
+  const onCreated = (props) => {
+    console.log(props);
+
+    // axios.post(`http://localhost:5000/appointments`, data);
+  };
+
   return (
     <Grid container direction="row">
       <Grid item>
         <ScheduleComponent
           resourceHeaderTemplate={resourceHeaderTemplate}
           currentView="TimelineViews"
-          selectedDate={new Date(2019, 4, 8)}
-          eventSettings={{ dataSource: remoteData }}
+          eventSettings={{ dataSource: appointments }}
           showWeekend={false}
           startHour="10:00"
           endHour="19:00"
+          dragStop={onDragStop}
+          saveEvent={onCreated}
+          group={groupData}
+          showQuickInfo={false}
         >
           <ResourcesDirective>
             <ResourceDirective

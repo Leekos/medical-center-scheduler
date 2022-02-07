@@ -1,4 +1,5 @@
 import React from "react";
+import * as data from "./db.json";
 import { Grid } from "@mui/material";
 import {
   Inject,
@@ -18,7 +19,7 @@ import {
 import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
 
 const remoteData = new DataManager({
-  url: "localhost:3000/db.json",
+  url: "http://localhost:3000/LoadData",
   adaptor: new WebApiAdaptor(),
   crossDomain: true,
 });
@@ -56,11 +57,7 @@ const resourceData = [
     designation: "Orthopedic Surgeon",
   },
 ];
-// const getDoctorName=(value)=>
-// {
-//   return value.resourceDataSource
-//   ?value.resourceDataSource[value.resource]
-// }; działamy auuu
+
 const groupData = {
   resources: ["Resources"],
 };
@@ -96,9 +93,7 @@ function Schedule() {
           resourceHeaderTemplate={resourceHeaderTemplate}
           currentView="TimelineViews"
           selectedDate={new Date(2019, 4, 8)}
-          eventSettings={{ dataSource: localData }}
-          Views
-          group={groupData}
+          eventSettings={{ dataSource: remoteData }}
           showWeekend={false}
           startHour="10:00"
           endHour="19:00"

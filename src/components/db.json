@@ -1,0 +1,23 @@
+[
+    {
+      "Id": 1,
+      "Subject": "Anna Kowalska",
+      "StartTime": "new Date(2019, 4, 8, 6, 0)",
+      "EndTime": "new Date(2019, 4, 8, 7, 0)",
+      "ResourceID": 1
+    },
+    {
+      "Id": 2,
+      "Subject": "Marek Kowalski",
+      "StartTime": "new Date(2019, 4, 9, 7, 30)",
+      "EndTime": "new Date(2019, 4, 9, 8, 30)",
+      "ResourceID": 2
+    },
+    {
+      "Id": 3,
+      "Subject": "Anna Nowak",
+      "StartTime": "new Date(2019, 4, 10, 9, 0)",
+      "EndTime": "new Date(2019, 4, 10, 10, 0)",
+      "ResourceID": 3
+    }
+  ]

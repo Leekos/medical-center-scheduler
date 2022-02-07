@@ -1,58 +1,5 @@
 {
   "appointments": [
-    {
-      "Subject": "Anna Kowalska",
-      "Location": "room 4",
-      "StartTime": "2019-05-08T10:00:00.000Z",
-      "EndTime": "2019-05-08T10:30:00.000Z",
-      "IsAllDay": false,
-      "StartTimezone": null,
-      "EndTimezone": null,
-      "ResourceID": 1,
-      "RecurrenceRule": null,
-      "id": 1
-    },
-    {
-      "id": 2
-    },
-    {
-      "Subject": "Marek Nowak",
-      "Location": "Room 5",
-      "StartTime": "2019-05-08T08:30:00.000Z",
-      "EndTime": "2019-05-08T09:00:00.000Z",
-      "IsAllDay": false,
-      "StartTimezone": null,
-      "EndTimezone": null,
-      "ResourceID": 2,
-      "RecurrenceRule": null,
-      "id": 3
-    },
-    {
-      "Subject": "marek markowski ",
-      "Location": "room1",
-      "StartTime": "2019-05-08T12:30:00.000Z",
-      "EndTime": "2019-05-08T13:00:00.000Z",
-      "IsAllDay": false,
-      "StartTimezone": null,
-      "EndTimezone": null,
-      "ResourceID": 2,
-      "RecurrenceRule": null,
-      "id": 4
-    },
-    {
-      "Subject": "Marek marecki",
-      "Location": "aaaaaa",
-      "StartTime": "2019-05-08T14:00:00.000Z",
-      "EndTime": "2019-05-08T14:30:00.000Z",
-      "IsAllDay": false,
-      "StartTimezone": null,
-      "EndTimezone": null,
-      "ResourceID": 2,
-      "RecurrenceRule": null,
-      "id": 5
-    },
-    {
-      "id": 6
-    }
+    
   ]
 }

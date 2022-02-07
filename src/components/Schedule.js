@@ -17,11 +17,11 @@ import {
 import axios from "axios";
 
 const resourceData = [
-  { Name: "Dr Janinia", Id: 1, Color: "#ea7a57", designation: "Cardiologist" },
-  { Name: "Dr Max", Id: 2, Color: "#357CD2", designation: "Neurologist" },
+  { Name: "Dr Janinia", id: 1, Color: "#ea7a57", designation: "Cardiologist" },
+  { Name: "Dr Max", id: 2, Color: "#357CD2", designation: "Neurologist" },
   {
     Name: "Dr Oskar",
-    Id: 3,
+    id: 3,
     Color: "#7fa900",
     designation: "Orthopedic Surgeon",
   },
@@ -62,14 +62,20 @@ function Schedule() {
     });
   }, []);
 
-  const onDragStop = ({ data }) => {
-    axios.put(`http://localhost:5000/appointments/${data.Id}`, data);
-  };
+  const onActionComplete = ({ requestType, data }) => {
+    if (data) data = data[0];
 
-  const onCreated = (props) => {
-    console.log(props);
-
-    // axios.post(`http://localhost:5000/appointments`, data);
+    switch (requestType) {
+      case "eventCreated":
+        axios.post(`http://localhost:5000/appointments`, data);
+        break;
+      case "eventRemoved":
+        axios.delete(`http://localhost:5000/appointments/${data.id}`);
+        break;
+      case "eventChanged":
+        axios.put(`http://localhost:5000/appointments/${data.id}`, data);
+        break;
+    }
   };
 
   return (
@@ -80,10 +86,10 @@ function Schedule() {
           currentView="TimelineViews"
           eventSettings={{ dataSource: appointments }}
           showWeekend={false}
+          selectedDate={new Date(2019, 4, 8)}
           startHour="10:00"
           endHour="19:00"
-          dragStop={onDragStop}
-          saveEvent={onCreated}
+          actionComplete={onActionComplete}
           group={groupData}
           showQuickInfo={false}
         >
@@ -93,7 +99,7 @@ function Schedule() {
               title="Lekarz"
               name="Resources"
               textField="Name"
-              idField="Id"
+              idField="id"
               colorField="Color"
               dataSource={resourceData}
             ></ResourceDirective>

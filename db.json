@@ -1,5 +1,60 @@
 {
   "appointments": [
-    
+    {
+      "Subject": "Anna Sankowska",
+      "Location": "room5",
+      "StartTime": "2022-02-09T10:00:00.000Z",
+      "EndTime": "2022-02-09T10:30:00.000Z",
+      "IsAllDay": false,
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "ResourceID": 1,
+      "Description": "Coś tam",
+      "RecurrenceRule": null,
+      "Id": 1,
+      "RecurrenceException": null,
+      "RecurrenceID": null,
+      "id": 1
+    },
+    {
+      "Reason": "Ból pleców",
+      "Description": "numer telefonu 9912392103",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 2,
+      "id": 2
+    },
+    {
+      "Reason": "asdsadasad",
+      "Description": "123213123",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 3,
+      "id": 3
+    },
+    {
+      "Reason": "abba",
+      "Description": "123123123",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 4,
+      "id": 4
+    },
+    {
+      "Reason": "sdfsdf",
+      "Description": "1232131236666",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 5,
+      "id": 5
+    },
+    {
+      "Reason": "złamana noga",
+      "Description": "12323474634 adres afjdsakfgjsda",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 6,
+      "id": 6
+    }
   ]
 }

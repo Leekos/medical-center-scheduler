@@ -7,7 +7,7 @@ server.use(middlewares);
 
 server.use(
   jsonServer.rewriter({
-    "/route/:id": "/route?Id=:id",
+    "/route/:id": "/route?Id=:id", //zmiana id ze względu na, to że program korzysta z dwóch Id oraz id
   })
 );
 

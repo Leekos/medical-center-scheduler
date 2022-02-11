@@ -9,7 +9,6 @@ import {
   Month,
   Agenda,
   TimelineViews,
-  EventSettingsModel,
   ResourceDirective,
   ResourcesDirective,
   DragAndDrop,
@@ -17,7 +16,6 @@ import {
 import axios from "axios";
 import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
-import { ThirtyFpsSelectRounded } from "@mui/icons-material";
 
 const resourceData = [
   { Name: "Dr Janinia", id: 1, Color: "#ea7a57", designation: "Cardiologist" },
@@ -66,14 +64,37 @@ function Schedule() {
   }, []);
 
   const editorTemplate = (props) => {
-    // w przykładzie typsescriptowym jest "private nazwa(props:any): JSX.Element"
+    console.log(props);
     return (
       <table className="custom-event-editor">
         <tbody>
           <tr>
             <td className="e-textlabel">Name and Surname</td>
             <td>
-              <input id="Name" name="Subject" type="text"></input>
+              <input
+                id="Name"
+                name="Subject"
+                type="text"
+                className="e-field e-input"
+              ></input>
+            </td>
+          </tr>
+
+          <tr>
+            <td className="e-textlabel">Doctor</td>
+            <td>
+              <DropDownListComponent
+                id="ResourceID"
+                dataSource={resourceData}
+                fields={{
+                  text: "Name",
+                  value: "id",
+                }}
+                placeholder="Choose doctor"
+                name="ResourceID"
+                className="e-field"
+                value={props.ResourceID || null}
+              ></DropDownListComponent>
             </td>
           </tr>
 
@@ -84,11 +105,13 @@ function Schedule() {
                 id="EventType"
                 dataSource={["New", "Confirmed"]}
                 placeholder="Choose status"
-                name="Event-type"
+                name="EventType"
+                className="e-field"
                 value={props.EventType || null}
               ></DropDownListComponent>
             </td>
           </tr>
+
           <tr>
             <td className="e-textlabel">From</td>
 
@@ -96,6 +119,7 @@ function Schedule() {
               <DateTimePickerComponent
                 id="StartTime"
                 name="StartTime"
+                className="e-field"
                 value={new Date(props.startTime || props.StartTime)}
                 format="dd/MM/yy hh:mm a"
               ></DateTimePickerComponent>
@@ -107,6 +131,7 @@ function Schedule() {
               <DateTimePickerComponent
                 id="EndTime"
                 data-name="EndTime"
+                className="e-field"
                 value={new Date(props.startTime || props.StartTime)}
                 format="dd/MM/yy hh:mm a"
               ></DateTimePickerComponent>
@@ -152,6 +177,9 @@ function Schedule() {
   };
 
   const onActionComplete = ({ requestType, data }) => {
+    console.log(requestType);
+    console.log(data);
+
     if (data) data = data[0];
 
     switch (requestType) {

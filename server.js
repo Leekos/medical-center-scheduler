@@ -1,7 +1,7 @@
-const jsonServer = require("json-server");
-const server = jsonServer.create();
-const router = jsonServer.router("db.json");
-const middlewares = jsonServer.defaults();
+const jsonServer = require("json-server"); // Import json-server
+const server = jsonServer.create(); // stworzenie nowego serwera
+const router = jsonServer.router("db.json"); // źródło danych dla serwera
+const middlewares = jsonServer.defaults(); // ustawienie domyślnych parametrów serwera
 
 server.use(middlewares);
 
@@ -13,10 +13,9 @@ server.use(
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 server.use(router);
 server.listen(5000, () => {
   console.log("JSON Server is running");
-});
+}); //ustawienie portu na którym ma działać serwer

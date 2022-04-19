@@ -1,18 +1,15 @@
-import { ScheduleComponent } from "@syncfusion/ej2-react-schedule";
 import React, { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Schedule from "./components/Schedule";
 import {
   ThemeProvider,
   createTheme,
-  Grid,
   Button,
   Typography,
   AppBar,
   CssBaseline,
   Toolbar,
 } from "@mui/material";
-import { Box, palette } from "@mui/system";
 import LogoutIcon from "@mui/icons-material/Logout";
 const themeOptions = createTheme({
   palette: {
@@ -80,17 +77,6 @@ function App() {
           {/* Welcome,<span>{user.name}</span> */}
         </>
       ) : (
-        // <Button
-        //   startIcon={<Logout />}
-        //   size="medium"
-        //   variant="contained"
-        //   color="error"
-        //   variant="contained"
-        //   onClick={Logout}
-        // >
-        //   Log Out
-        // </Button>
-
         <LoginForm Login={Login} error={error} />
       )}
     </ThemeProvider>

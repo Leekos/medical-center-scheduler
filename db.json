@@ -55,6 +55,48 @@
       "EndTimezone": null,
       "Id": 6,
       "id": 6
+    },
+    {
+      "Subject": "Bartosz Falbogowski",
+      "ResourceID": 1,
+      "EventType": null,
+      "StartTime": "2022-03-25T10:00:00.000Z",
+      "EndTime": "2022-03-25T10:30:00.000Z",
+      "Reason": "",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 7,
+      "RecurrenceException": null,
+      "RecurrenceID": null,
+      "id": 7
+    },
+    {
+      "Subject": "Oskar Grudziński",
+      "ResourceID": 2,
+      "EventType": null,
+      "StartTime": "2022-03-25T11:30:00.000Z",
+      "EndTime": "2022-03-25T12:00:00.000Z",
+      "Reason": "",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 8,
+      "RecurrenceException": null,
+      "RecurrenceID": null,
+      "id": 8
+    },
+    {
+      "Subject": "Tomasz Sankowski",
+      "ResourceID": 3,
+      "EventType": null,
+      "StartTime": "2022-03-25T13:00:00.000Z",
+      "EndTime": "2022-03-25T13:30:00.000Z",
+      "Reason": "",
+      "StartTimezone": null,
+      "EndTimezone": null,
+      "Id": 9,
+      "RecurrenceException": null,
+      "RecurrenceID": null,
+      "id": 9
     }
   ]
 }

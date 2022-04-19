@@ -55,13 +55,31 @@ const resourceHeaderTemplate = (props) => {
   );
 };
 function Schedule() {
-  const [appointments, setAppointments] = useState({});
+  const [appointments, setAppointments] = useState({}); //zapisywanie wyników z serwera do wyświetlenia
 
   useEffect(() => {
     axios.get("http://localhost:5000/appointments").then((res) => {
       setAppointments(res.data);
-    });
+    }); //pobranie danych z  serwera za pomocą axiosa
   }, []);
+  const onActionComplete = ({ requestType, data }) => {
+    console.log(requestType); // "eventCreate" | "eventChange" | "eventRemove"
+    console.log(data);
+
+    if (data) data = data[0];
+
+    switch (requestType) {
+      case "eventCreated":
+        axios.post(`http://localhost:5000/appointments`, data); //dodanie wyników z serwera
+        break;
+      case "eventRemoved":
+        axios.delete(`http://localhost:5000/appointments/${data.id}`); //usunięcie wyników z serwera
+        break;
+      case "eventChanged":
+        axios.put(`http://localhost:5000/appointments/${data.id}`, data); //zmiana wyników z serwera
+        break;
+    }
+  }; // obsługa bazy danych
 
   const editorTemplate = (props) => {
     console.log(props);
@@ -176,60 +194,41 @@ function Schedule() {
     );
   };
 
-  const onActionComplete = ({ requestType, data }) => {
-    console.log(requestType);
-    console.log(data);
-
-    if (data) data = data[0];
-
-    switch (requestType) {
-      case "eventCreated":
-        axios.post(`http://localhost:5000/appointments`, data);
-        break;
-      case "eventRemoved":
-        axios.delete(`http://localhost:5000/appointments/${data.id}`);
-        break;
-      case "eventChanged":
-        axios.put(`http://localhost:5000/appointments/${data.id}`, data);
-        break;
-    }
-  }; // obsługa bazy danych
-
   return (
     <Grid container direction="row">
       <Grid item>
         <ScheduleComponent
-          resourceHeaderTemplate={resourceHeaderTemplate}
-          currentView="TimelineViews"
-          eventSettings={{ dataSource: appointments }}
-          showWeekend={false}
-          startHour="10:00"
-          endHour="19:00"
-          actionComplete={onActionComplete}
-          group={groupData}
-          showQuickInfo={false}
-          editorTemplate={editorTemplate} // w przykładzie jest  this.nazwa.bind(this)
+          resourceHeaderTemplate={resourceHeaderTemplate} // wyświetlanie danych lekarza
+          currentView="TimelineViews" // można ustawić na "TimelineViews"
+          eventSettings={{ dataSource: appointments }} // wyświetlanie wydarzeń
+          showWeekend={false} // wyłączenie weekendów
+          startHour="10:00" // godzina rozpoczęcia
+          endHour="19:00" // godziny pracy
+          actionComplete={onActionComplete} // obsługa bazy danych
+          group={groupData} // grupowanie
+          showQuickInfo={false} // wyłączenie podpowiedzi
+          editorTemplate={editorTemplate} // obsługa edytora
         >
           <ResourcesDirective>
             <ResourceDirective
-              field="ResourceID"
-              title="Lekarz"
-              name="Resources"
-              textField="Name"
-              idField="id"
-              colorField="Color"
-              dataSource={resourceData}
+              field="ResourceID" // nazwa pola w bazie danych
+              title="Lekarz" // nazwa wyświetlana w kalendarzu
+              name="Resources" // nazwa zmiennej w komponencie
+              textField="Name" // nazwa pola w bazie danych
+              idField="id" // nazwa pola w bazie danych
+              colorField="Color" // nazwa pola w bazie danych
+              dataSource={resourceData} // dane
             ></ResourceDirective>
           </ResourcesDirective>
           <Inject
             services={[
-              Day,
-              Week,
-              WorkWeek,
-              Month,
-              Agenda,
-              TimelineViews,
-              DragAndDrop,
+              Day, // dni tygodnia
+              Week, // tygodnie
+              WorkWeek, // tygodnie pracy
+              Month, // miesiące
+              Agenda, // agenda
+              TimelineViews, // widok w godzinach
+              DragAndDrop, // obsługa drag and drop
             ]}
           />
         </ScheduleComponent>
